@@ -9,6 +9,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CONFIGURATIONS
 \input{packages/packages}
+
+\usepackage{flowfram}
+
 \input{fonts/fonts}
 \input{icons/icons}
 \input{packages/commands}
@@ -18,11 +21,25 @@
 % HEADER
 \input{contents/fr/header}
 
+\newstaticframe[1]{\textwidth}{.25\textheight}{0pt}{.75\textheight}[top]
+\newstaticframe[1]{.2\textwidth}{.88\textheight}{0pt}{0pt}[left]
+\setallstaticframes{valign=t}
+
+\newflowframe[1]{.65\textwidth}{.88\textheight}{.2
+\textwidth}{0pt}
+\newflowframe[2]{.65\textwidth}{\textheight}{.35\textwidth}{0pt}
+
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CURRICULUM VITAE
+\begin{staticcontents*}{top}
 \makecvtitle
+\end{staticcontents*}
+
+\begin{staticcontents*}{left}
+\raggedright This is a test
+\end{staticcontents*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % STATEMENT
@@ -33,15 +50,13 @@
 % EXPERIENCE
 \input{contents/fr/exp}
 
-\pagebreak
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % EDUCATION
-\input{contents/fr/edu}
+%\input{contents/fr/edu}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SKILLS
-\input{contents/fr/tech}
+%\input{contents/fr/tech}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % COVER LETTER
