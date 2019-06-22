@@ -1,16 +1,8 @@
-const Gulp = require('gulp');
-const Shell = require('gulp-shell');
-const clean = require('gulp-clean');
+const { series, src, watch } = require('gulp')
+const  shell = require('gulp-shell')
+const clean = require('gulp-clean')
 
-Gulp.task('watch', function() {
-  Gulp.watch('contents/en/*.tex', ['full'])
-});
-Gulp.task('full', ['tex', 'clean'])
-
-var tex = Shell.task(['lualatex cv -halt-on-error']);
-Gulp.task('tex', tex);
-
-var texOutput = [
+const output = [
   '*.aux',
   '*.bbl',
   '*.blg',
@@ -23,8 +15,12 @@ var texOutput = [
   '*.lol',
   '*.out',
   '*.toc'
-];
+]
 
-Gulp.task('clean', function() {
-  Gulp.src(texOutput).pipe(clean({force: true}))
-});
+// set up tasks
+const tex = () => shell([`lualatex cv-en`])
+const purge = () => src(output).pipe(clean({force: true}))
+
+exports.default = () => {
+  watch(`contents/en/*.tex`, series(tex, purge))
+}
